@@ -15,8 +15,8 @@ public class SelenideTest extends TestBase {
     public SelenideTest() {
     }
     
-    //@Test
-    public void testCreateANewAuthor(){
+    @Test
+    public void testCreateANewAuthor(){        
         String values = UUID.randomUUID().toString();
         values = values.substring(0,6);
         AdminHelper.loginAsAdmin();
@@ -27,23 +27,37 @@ public class SelenideTest extends TestBase {
         sleep(500);        
     }  
     
-    //@Test
-    public void testEditEmailAdress(){
+    @Test
+    public void testEditEmailAdress(){        
         String values = UUID.randomUUID().toString();
         values = values.substring(0,6);   
         UserHelper.createNewUser(values, values);
         UserHelper.logInAsUser(values, values);
         boolean resultOfEditOperation = UserHelper.editUserProfile(values, values, "new email");
         assertEquals("The edit operation should be successfull!",resultOfEditOperation, true);
+        UserHelper.singOut();
         sleep(500);
     }
     
-    //@Test
-    public void testEditPublishDate(){        
+   @Test
+    public void testEditPublishDate(){          
         AdminHelper.loginAsAdmin();
         boolean resultOfEditPublishDate = AdminHelper.editPublishDateOfABook("Omens");
         assertEquals("The edit operation should be successfull!",resultOfEditPublishDate, true);
         sleep(500);
+    }
+    
+    @Test
+    public void testBorrowABook(){     
+       
+       String values = UUID.randomUUID().toString();
+       values = values.substring(0,6);   
+       UserHelper.createNewUser(values, values);
+       UserHelper.logInAsUser(values, values);
+       boolean resultOfBorrowingABook = UserHelper.borrowABook();
+       assertTrue("The result of the operation should be true!",resultOfBorrowingABook);
+       
+       sleep(500);
     }
     
     

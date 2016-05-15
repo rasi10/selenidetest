@@ -12,13 +12,15 @@ import se.nackademin.librarytest.pages.edit.EditUserPage;
 import se.nackademin.librarytest.pages.MenuPage;
 import se.nackademin.librarytest.pages.MyProfilePage;
 import se.nackademin.librarytest.pages.SignInPage;
+import se.nackademin.librarytest.pages.browsepages.BrowseBooksPage;
+import se.nackademin.librarytest.pages.searchresults.BooksResultSearchPage;
 
 /**
  * @author testautomatisering
  */
 public class UserHelper {
     public static void createNewUser(String username, String password) {
-        MenuPage menuPage = page(MenuPage.class);
+        MenuPage menuPage = page(MenuPage.class);       
         menuPage.navigateToAddUser();
 
         AddUserPage addUserPage = page(AddUserPage.class);
@@ -37,10 +39,40 @@ public class UserHelper {
 
     }   
     
-    public static boolean editUserProfile(String username, String password, String newEmail) {
-        //createNewUser(username, password);
-        //logInAsUser(username, password);
+    public static boolean borrowABook() {
+        MenuPage menuPage = page(MenuPage.class);
+        menuPage.navigateToBrowseBooks();        
         
+        BrowseBooksPage browseBooksPage = page(BrowseBooksPage.class);        
+        browseBooksPage.clickSearchBooksButton();
+        browseBooksPage.clickFirstResultTitle();
+        
+        BooksResultSearchPage booksResultSearchPage = page(BooksResultSearchPage.class);       
+        String numberOfBooksBeforeBorrowing = booksResultSearchPage.getNumberOfCopiesAvailable();
+        
+        booksResultSearchPage.clickBorrowBookButton();        
+        booksResultSearchPage.clickConfirmationDialogYesButton();
+        String numberOfBooksAfterBorrowing = booksResultSearchPage.getNumberOfCopiesAvailable();
+        
+        booksResultSearchPage.clickReturnBookButton();
+        booksResultSearchPage.clickConfirmationDialogYesButton();
+        String numberOfBooksAfterRetuning = booksResultSearchPage.getNumberOfCopiesAvailable();
+        
+        if (numberOfBooksBeforeBorrowing.equalsIgnoreCase(numberOfBooksAfterRetuning)){
+            if(!numberOfBooksBeforeBorrowing.equalsIgnoreCase(numberOfBooksAfterBorrowing)){
+                return true;
+            }
+        }
+        return false;        
+
+    } 
+    
+    public static void singOut(){
+        MenuPage menuPage = page(MenuPage.class);
+        menuPage.navigateToSignOut();
+    }
+    
+    public static boolean editUserProfile(String username, String password, String newEmail) {        
         MenuPage menuPage = page(MenuPage.class);
         menuPage.navigateToMyProfile();
         

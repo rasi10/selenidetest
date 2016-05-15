@@ -32,7 +32,15 @@ public class BooksResultSearchPage {
     @FindBy(css = "#delete-book-button")
     private SelenideElement deleteBookButton;
     
+    @FindBy(css = "#return-book-button")
+    private SelenideElement returnBookButton;
     
+            
+    //confirmationDialog
+    @FindBy(css = "#confirmdialog-ok-button")
+    private SelenideElement confirmationDialogYesButton;
+    
+       
     public String getTitleOfTheBook(){
         return titleText.getText();
     } 
@@ -50,14 +58,22 @@ public class BooksResultSearchPage {
     }
     
     public void clickBorrowBookButton(){
-        editBookButton.click();
+        borrowBookButton.click();
     }
     
     public void clickEditBookButton(){
         editBookButton.click();
     }
     public void clickDeleteBookButton(){
-        editBookButton.click();
+        deleteBookButton.click();
+    }
+    
+    public void clickConfirmationDialogYesButton(){
+        confirmationDialogYesButton.click();
+    }
+    
+    public void clickReturnBookButton(){
+        returnBookButton.click();
     }
     
    
