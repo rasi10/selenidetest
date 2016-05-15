@@ -7,12 +7,13 @@ package se.nackademin.librarytest.pages.searchresults;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
+import se.nackademin.librarytest.pages.MenuPage;
 
 /**
  *
  * @author rafael
  */
-public class AuthorResultSearchPage {
+public class AuthorResultSearchPage extends MenuPage {
     @FindBy(css = "#gwt-uid-3")
     private SelenideElement nameText;
     
@@ -23,14 +24,17 @@ public class AuthorResultSearchPage {
     private SelenideElement biographyText;
     
     public String getAuthorName(){
-        return nameText.getText();
+        return getTextValue("name", nameText);
+        
     }
     
     public String getAuthorCountry(){
-        return nameText.getText();
+        return getTextValue("country", countryText);
+        
     }
     public String getAuthorBiography(){
-        return nameText.getText();
+        return getTextValue("biography", biographyText);
+        
     }
     
     

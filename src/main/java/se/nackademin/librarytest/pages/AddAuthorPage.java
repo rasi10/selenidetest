@@ -30,20 +30,20 @@ public class AddAuthorPage extends MenuPage {
     SelenideElement addAuthorButton;
 
     public void setFirstName(String firstName) {
-       setTextFieldValue("authors first name field", firstName, firstNameField);
+       setTextFieldValue("first name", firstName, firstNameField);
       
     }
 
     public void setLastName(String lastName) {
-        setTextFieldValue("authors last name field", lastName, lastNameField);
+        setTextFieldValue("last name", lastName, lastNameField);
     }
    
     public void setCountry(String country) {
-        setTextFieldValue("country field", country, countryField);
+        setTextFieldValue("country", country, countryField);
     }
     
     public void setBiography(String biography) {
-        setTextFieldValue("biography field", biography, biographyField);
+        setTextFieldValue("biography", biography, biographyField);
     }
 
     public void clickAddAuthorButton() {

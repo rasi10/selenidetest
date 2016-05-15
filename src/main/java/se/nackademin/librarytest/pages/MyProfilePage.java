@@ -32,27 +32,33 @@ public class MyProfilePage extends MenuPage {
        
 
     public String getUserName() {
-        return userNameText.getText();
+        return getTextValue("user name", userNameText);
+        //return userNameText.getText();
     }
     
     public String getFirstName() {
-        return firstNameText.getText();
+        return getTextValue("first name", firstNameText);
+        
     }
     
     public String getlasTName() {
-        return lastNameText.getText();
+       return getTextValue("last name", lastNameText);
+        
     }
     
     public String getPhoneNumber() {
-        return phoneNumberText.getText();
+        return getTextValue("phone number", phoneNumberText);
+        
     }    
     
     public String getUserEmail() {
-        return emailText.getText();
+        return getTextValue("email", emailText);
+        
     }
 
     public void clickEditProfileButton(){
-        clickButton("add user button", editProfileButton);
+        clickButton("edit profile",editProfileButton );
+        
     }
 
 }

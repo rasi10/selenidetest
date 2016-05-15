@@ -19,18 +19,17 @@ public class SignInPage extends MenuPage {
     @FindBy(css = "#login-button")
     SelenideElement logInButton;
 
-    public void setUsername(String username) {        
-        userNameField.clear();
-        userNameField.sendKeys(username);
-
+    public void setUsername(String username) {
+        setTextFieldValue("username", username, userNameField);
     }
 
     public void setPassword(String password) {
-        passwordField.clear();
-        passwordField.sendKeys(password);
+        setTextFieldValue("password", password, passwordField);
+        
     }
 
     public void clickLogIn() {
-        logInButton.click();
+        clickButton("login button", logInButton);
+        
     }
 }

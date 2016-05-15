@@ -7,11 +7,12 @@ package se.nackademin.librarytest.pages.browsepages;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
+import se.nackademin.librarytest.pages.MenuPage;
 
 /**
  * @author testautomatisering
  */
-public class BrowseBooksPage {
+public class BrowseBooksPage extends MenuPage{
     @FindBy(css = "#gwt-uid-3")
     private SelenideElement titleField;
     @FindBy(css = "#search-books-button")
@@ -20,15 +21,17 @@ public class BrowseBooksPage {
     private SelenideElement firstResultTitle;    
 
     public void setTitleField(String title) {
-        titleField.clear();
-        titleField.sendKeys(title);
+        setTextFieldValue("title", title, titleField);
+       
     }
 
     public void clickSearchBooksButton() {
-        searchBooksButton.click();
+        clickButton("search button", searchBooksButton);
+        
     }
     
     public void clickFirstResultTitle() {
-        firstResultTitle.click();
+        clickFirstElementOnTable("first element on the table", firstResultTitle);
+        
     }
 }

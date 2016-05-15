@@ -7,12 +7,13 @@ package se.nackademin.librarytest.pages.edit;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
+import se.nackademin.librarytest.pages.MenuPage;
 
 /**
  *
  * @author rafael
  */
-public class EditUserPage {
+public class EditUserPage extends MenuPage{
     @FindBy(css = "#gwt-uid-3")
     SelenideElement displayNameField;
     
@@ -37,43 +38,44 @@ public class EditUserPage {
     
     
     public void setDisplayNameField(String displayName) {
-        displayNameField.clear();
-        displayNameField.sendKeys(displayName);
+        setTextFieldValue("display name", displayName, displayNameField);
+       
       
     }
     
     public void setPasswordField(String password) {
-        passwordField.clear();
-        passwordField.sendKeys(password);
+        setTextFieldValue("password", password, passwordField);
+       
       
     }
     
     public void setfirstNameField(String firstName) {
-        firstNameField.clear();
-        firstNameField.sendKeys(firstName);
+        setTextFieldValue("first name", firstName, firstNameField);
+     
       
     }
     
     public void setLastNameField(String lastName) {
-        lastNameField.clear();
-        lastNameField.sendKeys(lastName);
+        setTextFieldValue("last name", lastName, lastNameField);
+      
       
     }
     
     public void setPhoneNumberField(String phoneNumber) {
-        phoneNumberFieldField.clear();
-        phoneNumberFieldField.sendKeys(phoneNumber);
+        setTextFieldValue("phone number", phoneNumber, phoneNumberFieldField);
+        
       
     }
     
     public void setEmailField(String email) {
-        emailAddressField.clear();
-        emailAddressField.sendKeys(email);
+        setTextFieldValue("email number", email, emailAddressField);
+       
       
     }
     
     public void clickSaveChangesButton() {
-        saveChangesButton.click();
+        clickButton("save changes", saveChangesButton);
+        
     }
     
 }

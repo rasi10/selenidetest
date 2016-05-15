@@ -7,8 +7,9 @@ package se.nackademin.librarytest.pages.searchresults;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
+import se.nackademin.librarytest.pages.MenuPage;
 
-public class BooksResultSearchPage {
+public class BooksResultSearchPage extends MenuPage {
     
      @FindBy(css = "#gwt-uid-3")
     private SelenideElement titleText;
@@ -42,38 +43,47 @@ public class BooksResultSearchPage {
     
        
     public String getTitleOfTheBook(){
-        return titleText.getText();
+        return getTextValue("title", titleText);
+        
     } 
     
     public String getPublishDateOfTheBook(){
-        return publishDateText.getText();
+        return getTextValue("publish date", publishDateText);
+        
     }
     
     public String getNumberOfCopiesAvailable(){
-        return numberOfCopiesAvailableText.getText();
+        return getTextValue("No of copies available", numberOfCopiesAvailableText);
+        
     }
     
     public String getTotalNumberOfCopies(){
-        return totalNumberOfCopiesText.getText();
+        return getTextValue("total No of copies", totalNumberOfCopiesText);
+       
     }
     
     public void clickBorrowBookButton(){
-        borrowBookButton.click();
+        clickButton("borrow button", borrowBookButton);
+       
     }
     
     public void clickEditBookButton(){
-        editBookButton.click();
+        clickButton("edit button", editBookButton);
+       
     }
     public void clickDeleteBookButton(){
-        deleteBookButton.click();
+        clickButton("delete button", deleteBookButton);
+        
     }
     
     public void clickConfirmationDialogYesButton(){
-        confirmationDialogYesButton.click();
+        clickButton("confirmation dialog yes", confirmationDialogYesButton);
+        
     }
     
     public void clickReturnBookButton(){
-        returnBookButton.click();
+        clickButton("return button", returnBookButton);
+        
     }
     
    

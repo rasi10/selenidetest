@@ -7,12 +7,13 @@ package se.nackademin.librarytest.pages.edit;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
+import se.nackademin.librarytest.pages.MenuPage;
 
 /**
  *
  * @author rafael
  */
-public class EditBooksPage {
+public class EditBooksPage extends MenuPage{
     @FindBy (css = "#gwt-uid-7")
     private SelenideElement publishDateField;
     
@@ -20,12 +21,13 @@ public class EditBooksPage {
     private SelenideElement saveChangeButton;
     
     public void setPublishDate(String newDate){
-        publishDateField.clear();
-        publishDateField.sendKeys(newDate);
+        setTextFieldValue("", newDate, publishDateField);
+       
     }
     
     public void clickSaveChangesButton(){
-        saveChangeButton.click();
+        clickButton("save changes", saveChangeButton);
+        
     }
     
     

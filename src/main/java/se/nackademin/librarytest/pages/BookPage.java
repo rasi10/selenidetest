@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 /**
  * @author testautomatisering
  */
-public class BookPage {
+public class BookPage extends MenuPage{
 
     @FindBy(css = "#gwt-uid-3")
     SelenideElement titleField;
@@ -21,14 +21,17 @@ public class BookPage {
     SelenideElement descriptionField;
 
     public String getTitle() {
-        return titleField.getText();
+        return getTextValue("title", titleField);
+        
     }
 
     public String getAuthor() {
-        return authorField.getText();
+        return getTextValue("author", titleField);
+        
     }
 
     public String getDescription() {
-        return descriptionField.getText();
+        return getTextValue("description", titleField);
+       
     }
 }

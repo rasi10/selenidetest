@@ -20,11 +20,11 @@ public class AddUserPage extends MenuPage {
     SelenideElement addUserButton;
 
     public void setUsername(String username) {
-        setTextFieldValue("user name field", username, userNameField);
+        setTextFieldValue("username", username, userNameField);
     }
 
     public void setPassword(String password) {
-        setTextFieldValue("password field", password, passwordField);
+        setTextFieldValue("password", password, passwordField);
     }
 
     public void clickAddUserButton() {
