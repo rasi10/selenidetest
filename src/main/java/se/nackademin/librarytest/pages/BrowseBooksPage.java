@@ -17,11 +17,7 @@ public class BrowseBooksPage {
     @FindBy(css = "#search-books-button")
     private SelenideElement searchBooksButton;
     @FindBy(css = "td.v-grid-cell:nth-child(1) > a:nth-child(1)")
-    private SelenideElement firstResultTitle;
-
-    public void clickFirstResultTitle() {
-        firstResultTitle.click();
-    }
+    private SelenideElement firstResultTitle;    
 
     public void setTitleField(String title) {
         titleField.clear();
@@ -30,5 +26,9 @@ public class BrowseBooksPage {
 
     public void clickSearchBooksButton() {
         searchBooksButton.click();
+    }
+    
+    public void clickFirstResultTitle() {
+        firstResultTitle.click();
     }
 }

@@ -3,36 +3,28 @@ package se.nackademin.librarytest;
 import static com.codeborne.selenide.Selenide.*;
 
 import java.util.UUID;
-
 import org.junit.Test;
-
 import static org.junit.Assert.*;
-
-import org.junit.Ignore;
-import se.nackademin.librarytest.helpers.BookHelper;
-import se.nackademin.librarytest.helpers.Table;
-import se.nackademin.librarytest.helpers.UserHelper;
-import se.nackademin.librarytest.model.Book;
-import se.nackademin.librarytest.pages.BrowseBooksPage;
-import se.nackademin.librarytest.pages.MenuPage;
-import se.nackademin.librarytest.pages.MyProfilePage;
-import se.nackademin.librarytest.pages.SignInPage;
+import se.nackademin.librarytest.helpers.*;
+import se.nackademin.librarytest.pages.*;
 
 public class SelenideTest extends TestBase {
 
     public SelenideTest() {
     }
-
-    @Test
-    public void createANewAuthor(){
-        page(MenuPage.class).navigateToSignIn();
-        SignInPage signInPage = page(SignInPage.class);
-        signInPage.setUsername("admin");
-        signInPage.setPassword("1234567890");
-        signInPage.clickLogIn();
-        sleep(10000);        
-    }
     
+    @Test
+    public void testLogin(){
+        String values = UUID.randomUUID().toString();
+        values = values.substring(0,6);
+        AdminHelper.loginAsAdmin();
+        AdminHelper.createNewAuthor(values,values, values, values);
+        AdminHelper.fetchAuthor(values, values);        
+        AuthorResultSearchPage authorResults = page(AuthorResultSearchPage.class);   
+        assertEquals("The name of the author should be displayed!",authorResults.getAuthorName().contains(values),true);
+        sleep(500);
+        
+    }  
     
     
     //@Test

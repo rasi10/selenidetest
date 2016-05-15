@@ -34,4 +34,8 @@ public class UserHelper {
         signInPage.clickLogIn();
 
     }
+
+    public void createNewUser() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -7,15 +7,15 @@ package se.nackademin.librarytest.helpers;
 
 import static com.codeborne.selenide.Selenide.page;
 
-import se.nackademin.librarytest.model.Book;
-import se.nackademin.librarytest.pages.BookPage;
-import se.nackademin.librarytest.pages.BrowseBooksPage;
-import se.nackademin.librarytest.pages.MenuPage;
+import se.nackademin.librarytest.model.*;
+import se.nackademin.librarytest.pages.*;
 
 /**
  * @author testautomatisering
  */
 public class BookHelper {
+    
+    
 
     public static void addNewBook(Book book) {
 

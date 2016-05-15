@@ -12,7 +12,6 @@ import org.openqa.selenium.support.FindBy;
  * @author testautomatisering
  */
 public class AddUserPage extends MenuPage {
-
     @FindBy(css = "#gwt-uid-3")
     SelenideElement userNameField;
     @FindBy(css = "#gwt-uid-5")
