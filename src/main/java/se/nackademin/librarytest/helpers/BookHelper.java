@@ -5,6 +5,7 @@
  */
 package se.nackademin.librarytest.helpers;
 
+import se.nackademin.librarytest.pages.browsepages.BrowseBooksPage;
 import static com.codeborne.selenide.Selenide.page;
 
 import se.nackademin.librarytest.model.*;

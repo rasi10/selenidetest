@@ -1,5 +1,7 @@
 package se.nackademin.librarytest;
 
+import se.nackademin.librarytest.pages.browsepages.BrowseBooksPage;
+import se.nackademin.librarytest.pages.searchresults.AuthorResultSearchPage;
 import static com.codeborne.selenide.Selenide.*;
 
 import java.util.UUID;
@@ -25,19 +27,27 @@ public class SelenideTest extends TestBase {
         sleep(500);        
     }  
     
-    @Test
+    //@Test
     public void testEditEmailAdress(){
         String values = UUID.randomUUID().toString();
-        values = values.substring(0,6);       
+        values = values.substring(0,6);   
+        UserHelper.createNewUser(values, values);
+        UserHelper.logInAsUser(values, values);
         boolean resultOfEditOperation = UserHelper.editUserProfile(values, values, "new email");
-        assertEquals(resultOfEditOperation, true);
+        assertEquals("The edit operation should be successfull!",resultOfEditOperation, true);
+        sleep(500);
+    }
+    
+    //@Test
+    public void testEditPublishDate(){        
+        AdminHelper.loginAsAdmin();
+        boolean resultOfEditPublishDate = AdminHelper.editPublishDateOfABook("Omens");
+        assertEquals("The edit operation should be successfull!",resultOfEditPublishDate, true);
         sleep(500);
     }
     
     
-    
-    
-    
+        
     //@Test
     public void testUsingTable() {
         page(MenuPage.class).navigateToBrowseBooks();

@@ -8,7 +8,7 @@ package se.nackademin.librarytest.helpers;
 import static com.codeborne.selenide.Selenide.page;
 
 import se.nackademin.librarytest.pages.AddUserPage;
-import se.nackademin.librarytest.pages.EditUserPage;
+import se.nackademin.librarytest.pages.edit.EditUserPage;
 import se.nackademin.librarytest.pages.MenuPage;
 import se.nackademin.librarytest.pages.MyProfilePage;
 import se.nackademin.librarytest.pages.SignInPage;
@@ -38,8 +38,8 @@ public class UserHelper {
     }   
     
     public static boolean editUserProfile(String username, String password, String newEmail) {
-        createNewUser(username, password);
-        logInAsUser(username, password);
+        //createNewUser(username, password);
+        //logInAsUser(username, password);
         
         MenuPage menuPage = page(MenuPage.class);
         menuPage.navigateToMyProfile();

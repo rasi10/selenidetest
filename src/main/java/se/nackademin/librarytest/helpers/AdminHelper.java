@@ -5,12 +5,18 @@
  */
 package se.nackademin.librarytest.helpers;
 
+import se.nackademin.librarytest.pages.browsepages.BrowseBooksPage;
 import static com.codeborne.selenide.Selenide.page;
-import com.thoughtworks.selenium.SeleneseTestBase;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Random;
 import se.nackademin.librarytest.pages.*;
-import se.nackademin.librarytest.pages.BrowseAuthorsPage;
+import se.nackademin.librarytest.pages.browsepages.BrowseAuthorsPage;
 import se.nackademin.librarytest.pages.MenuPage;
 import se.nackademin.librarytest.pages.SignInPage;
+import se.nackademin.librarytest.pages.edit.EditBooksPage;
+import se.nackademin.librarytest.pages.searchresults.BooksResultSearchPage;
 
 
 
@@ -54,10 +60,46 @@ public class AdminHelper {
         browseAuthorsPage.setNameField(name);
         browseAuthorsPage.setCountryField(country);
         browseAuthorsPage.clickSearchBooksButton();
-        browseAuthorsPage.clickFirstResultTitle(); 
-        
-        
-        
+        browseAuthorsPage.clickFirstResultTitle();        
     }
+    
+     public static boolean editPublishDateOfABook(String book){
+        GenerateRandomDate generateDate = new GenerateRandomDate();
+        
+        MenuPage menuPage = page(MenuPage.class);
+        menuPage.navigateToBrowseBooks();
+        
+        BrowseBooksPage browseBooksPage = page(BrowseBooksPage.class);
+        browseBooksPage.setTitleField(book);
+        browseBooksPage.clickSearchBooksButton();
+        browseBooksPage.clickFirstResultTitle();
+                
+        BooksResultSearchPage booksResultSearchPage = page(BooksResultSearchPage.class);
+        String publishDateBeforeEdit = booksResultSearchPage.getPublishDateOfTheBook();
+        
+        booksResultSearchPage.clickEditBookButton();
+                 
+        //work on the editbookspage
+        EditBooksPage editBooksPage = page(EditBooksPage.class);
+        editBooksPage.setPublishDate(generateDate.generateRandomPublishDateDate());
+        editBooksPage.clickSaveChangesButton();
+        
+        
+        menuPage.navigateToBrowseBooks();        
+        browseBooksPage = page(BrowseBooksPage.class);
+        browseBooksPage.setTitleField(book);
+        browseBooksPage.clickSearchBooksButton();
+        browseBooksPage.clickFirstResultTitle();
+        String publishDateAfterEdit = booksResultSearchPage.getPublishDateOfTheBook();
+        
+        if (!publishDateBeforeEdit.equals(publishDateAfterEdit)){
+            return true;
+        }
+        
+        return false;
+            
+     }       
+     
+     
     
 }
