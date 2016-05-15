@@ -13,18 +13,29 @@ public class SelenideTest extends TestBase {
     public SelenideTest() {
     }
     
-    @Test
-    public void testLogin(){
+    //@Test
+    public void testCreateANewAuthor(){
         String values = UUID.randomUUID().toString();
         values = values.substring(0,6);
         AdminHelper.loginAsAdmin();
         AdminHelper.createNewAuthor(values,values, values, values);
         AdminHelper.fetchAuthor(values, values);        
-        AuthorResultSearchPage authorResults = page(AuthorResultSearchPage.class);   
+        AuthorResultSearchPage authorResults = page(AuthorResultSearchPage.class);         
         assertEquals("The name of the author should be displayed!",authorResults.getAuthorName().contains(values),true);
-        sleep(500);
-        
+        sleep(500);        
     }  
+    
+    @Test
+    public void testEditEmailAdress(){
+        String values = UUID.randomUUID().toString();
+        values = values.substring(0,6);       
+        boolean resultOfEditOperation = UserHelper.editUserProfile(values, values, "new email");
+        assertEquals(resultOfEditOperation, true);
+        sleep(500);
+    }
+    
+    
+    
     
     
     //@Test

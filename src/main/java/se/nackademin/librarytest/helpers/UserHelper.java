@@ -8,7 +8,9 @@ package se.nackademin.librarytest.helpers;
 import static com.codeborne.selenide.Selenide.page;
 
 import se.nackademin.librarytest.pages.AddUserPage;
+import se.nackademin.librarytest.pages.EditUserPage;
 import se.nackademin.librarytest.pages.MenuPage;
+import se.nackademin.librarytest.pages.MyProfilePage;
 import se.nackademin.librarytest.pages.SignInPage;
 
 /**
@@ -33,6 +35,35 @@ public class UserHelper {
         signInPage.setPassword(password);
         signInPage.clickLogIn();
 
+    }   
+    
+    public static boolean editUserProfile(String username, String password, String newEmail) {
+        createNewUser(username, password);
+        logInAsUser(username, password);
+        
+        MenuPage menuPage = page(MenuPage.class);
+        menuPage.navigateToMyProfile();
+        
+        MyProfilePage myProfilePage = page(MyProfilePage.class);
+        myProfilePage.clickEditProfileButton();
+        String emailBeforeChanging = myProfilePage.getUserEmail();
+        
+        EditUserPage editUserPage = page(EditUserPage.class);
+        editUserPage.setDisplayNameField(username);
+        editUserPage.setPasswordField(password);
+        editUserPage.setEmailField(newEmail);
+        editUserPage.clickSaveChangesButton();
+        
+        menuPage.navigateToMyProfile();        
+        String emailAfterChange = myProfilePage.getUserEmail();
+        
+        if (!emailBeforeChanging.equalsIgnoreCase(emailAfterChange)){
+            return true;
+        }
+        
+        return false;
+        
+        
     }
 
     public void createNewUser() {
